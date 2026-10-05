@@ -7,6 +7,7 @@ select
     upper(trim(customer_id)) as customer_id,
     lower(trim(event_type)) as event_type,
     try_cast(event_ts as timestamp) as event_timestamp,
+    try_cast(event_ts as date) as event_date,
     event_properties
 from raw_product_events
 where event_id is not null

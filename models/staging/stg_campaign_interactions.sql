@@ -9,6 +9,7 @@ select
     lower(trim(channel)) as channel,
     lower(trim(interaction_type)) as interaction_type,
     try_cast(interaction_ts as timestamp) as interaction_timestamp,
+    try_cast(interaction_ts as date) as interaction_date
 from raw_campaign_interactions
 where interaction_id is not null
     and customer_id is not null

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: int_customer_activity
+    description: "One row per customer with activity metrics."
+    columns:
+      - name: customer_id
+        description: "Unique customer ID. Join key for stg_customers."
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id

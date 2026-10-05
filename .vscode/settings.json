@@ -8,7 +8,7 @@
     },
     "duckdb.databases": [],
     "duckdb.defaultDatabase": "database_1",
-    "dbt.queryLimit": 50,
+    "dbt.queryLimit": 500,
     "files.associations": {
     "*.sql": "jinja-sql"
   },

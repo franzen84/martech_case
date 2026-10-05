@@ -27,3 +27,56 @@ models:
               values: ['active', 'churned', 'paused']
               config:
                 severity: warn
+
+  - name: stg_product_events
+    description: "Produkthändelser, en rad per event. Deduplicerad på event_id."
+    columns:
+      - name: event_id
+        tests: [unique, not_null]
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: event_type
+        tests:
+          - accepted_values:
+              values: ['login', 'stream_start', 'feature_use', 'support_ticket']
+
+  - name: stg_campaign_interactions
+    description: "Kampanjinteraktioner, en rad per funnel-steg (sent, delivered, opened, ...)."
+    columns:
+      - name: interaction_id
+        tests: [unique, not_null]
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: interaction_type
+        tests:
+          - accepted_values:
+              values: ['sent', 'delivered', 'opened', 'clicked', 'unsubscribed']
+
+  - name: stg_consent_registry
+    description: "Samtycken per kund och syfte. customer_id har fått prefixet CUST_ för att matcha övriga tabeller."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: purpose_code
+        tests:
+          - relationships:
+              to: ref('stg_consent_purpose_code')
+              field: purpose_code
+
+  - name: stg_consent_purpose_code
+    description: "Uppslagstabell för samtyckessyften och deras rättsliga grund."
+    columns:
+      - name: purpose_code
+        tests: [unique, not_null]

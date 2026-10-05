@@ -9,7 +9,6 @@ models:
         tests:
           - unique
           - not_null
-
       - name: subscription_plan
         description: "Subscription plan."
         tests:
@@ -18,7 +17,6 @@ models:
               values: ['basic', 'standard', 'premium']
               config:
                 severity: warn
-
       - name: subscription_status
         description: "Subscription status."
         tests:
@@ -57,6 +55,10 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+      - name: channel
+        tests:
+          - accepted_values:
+              values: ['email', 'push', 'sms', 'paid_social']
       - name: interaction_type
         tests:
           - accepted_values:

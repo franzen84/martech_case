@@ -8,4 +8,4 @@ select
     try_cast(consent_ts as timestamp) as consent_timestamp
 from raw_consent_registry
 where customer_id is not null
-  and purpose_code is not null
+    and purpose_code is not null

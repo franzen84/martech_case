@@ -1,4 +1,4 @@
-with raw as (
+with raw_customers as (
     select
         *
     from {{ source('raw', 'customers') }}
@@ -10,7 +10,7 @@ phone_cleaning as (
         *,  
         regexp_replace(replace(trim(split_part(phone_number, '/', 1)), '+', '00'), '[^0-9]', '', 'g') as phone_1,
         regexp_replace(replace(trim(split_part(phone_number, '/', 2)), '+', '00'), '[^0-9]', '', 'g') as phone_2
-    from raw
+    from raw_customers
 )
 
 

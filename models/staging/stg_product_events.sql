@@ -1,4 +1,4 @@
-with src as (
+with raw_product_events as (
     select * from {{ source('raw', 'product_events') }}
 )
 
@@ -9,7 +9,7 @@ select
     try_cast(event_ts as timestamp) as event_ts,
     cast(try_cast(event_ts as timestamp) as date) as event_date,
     event_properties
-from src
+from raw_product_events
 where event_id is not null
   and customer_id is not null
   and try_cast(event_ts as timestamp) is not null

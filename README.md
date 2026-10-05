@@ -36,12 +36,12 @@ DuckDB stores the database in the file `dev.duckdb`, so no database server is ne
 ## Modeling decisions
 
 - **Database:** DuckDB, because it is free and reads CSV files directly.
-- **Reference date:** The data is synthetic and ends in [month year], so all time windows
+- **Reference date:** The data is synthetic and ends in 2025-07-02, so all time windows
   are calculated from the latest event date in the data instead of today's date.
 - **Cleaning:** Text is trimmed and lowercased, bad dates become NULL, and duplicates are removed.
   The `customer_id` in `consent_registry` is padded and prefixed with `CUST_` so it matches the other tables.
 - **Phone numbers:** Split on `/` into two numbers, `+` replaced with `00`, non-digits removed,
-  and numbers shorter than 8 digits set to NULL.
+  and numbers shorter than 8 digits set to NULL. Since Norwegian numbers needs to be 8 digits.
 - **Open rate:** opened divided by delivered. It is NULL (not 0) when nothing was delivered.
 - **Eligibility:** Customers must have marketing consent (purpose codes 'PP_011','PP_012','PP_013','PP_014') and
   status `active` or `churned`. Churned customers can only be in `winback_target`.

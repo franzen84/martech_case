@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: mart_audience_segments
+    description: "One row per customer belonging to at least one segment (consent required, active or churned)."
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: subscription_status
+        tests:
+          - accepted_values:
+              values: ['active', 'churned']

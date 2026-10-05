@@ -1,0 +1,13 @@
+# models/staging/sources.yml
+version: 2
+
+sources:
+  - name: raw
+    meta:
+      external_location: "data/{name}.csv"
+    tables:
+      - name: customers
+      - name: product_events
+      - name: campaign_interactions
+      - name: consent_registry
+      - name: consent_purpose_code

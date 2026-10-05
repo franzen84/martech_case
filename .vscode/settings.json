@@ -7,5 +7,9 @@
         "*.xlsx": "duckdb.dataFileViewer"
     },
     "duckdb.databases": [],
-    "duckdb.defaultDatabase": "database_1"
+    "duckdb.defaultDatabase": "database_1",
+    "dbt.queryLimit": 50,
+    "files.associations": {
+    "*.sql": "jinja-sql"
+  }
 }

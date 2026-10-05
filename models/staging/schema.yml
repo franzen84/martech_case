@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Customers, one row per customer_id."
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier (CUST_XXXXXX)."
+        tests:
+          - unique
+          - not_null
+
+      - name: subscription_plan
+        description: "Subscription plan."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['basic', 'standard', 'premium']
+              config:
+                severity: warn
+
+      - name: subscription_status
+        description: "Subscription status."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['active', 'churned', 'paused']
+              config:
+                severity: warn

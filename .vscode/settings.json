@@ -11,5 +11,6 @@
     "dbt.queryLimit": 50,
     "files.associations": {
     "*.sql": "jinja-sql"
-  }
+  },
+  "dbt.perspectiveTheme": "Vintage"
 }

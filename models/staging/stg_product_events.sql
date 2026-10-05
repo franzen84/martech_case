@@ -11,6 +11,6 @@ select
     event_properties
 from raw_product_events
 where event_id is not null
-  and customer_id is not null
-  and try_cast(event_ts as timestamp) is not null
+    and customer_id is not null
+    and try_cast(event_ts as timestamp) is not null
 qualify row_number() over (partition by event_id order by event_ts) = 1

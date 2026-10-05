@@ -84,3 +84,7 @@ models:
     columns:
       - name: purpose_code
         tests: [unique, not_null]
+      - name: legal_ground
+        tests:
+          - accepted_values:
+              values: ['Legal Obligation', 'Performance of contract', 'Legitimate interest', 'Consent']
